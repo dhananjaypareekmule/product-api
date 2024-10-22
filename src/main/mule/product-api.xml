@@ -19,7 +19,7 @@ output application/json
 {
 	"name" : "product-api",
 	"date": now() as String {format: "dd-MMM-yyyy"},
-	"description": "This is the detailed description"
+	"description": "This is the appropriate description"
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
