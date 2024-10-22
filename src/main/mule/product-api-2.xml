@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="product-api-2Flow" doc:id="e6fee858-be61-4a07-959d-42418c58170f" >
+		<http:listener doc:name="Listener" doc:id="1e54a748-77fb-4403-9326-a6a27d67adbd" config-ref="HTTP_Listener_config" path="/product-api" />
+		<logger level="INFO" doc:name="Start Log" doc:id="cc525d95-849e-475b-a05f-7be112f28cb3" message="Start of flow"/>
+		<ee:transform doc:name="Transform Message" doc:id="4fa4927f-41da-4925-8d41-798eeece5c12" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"name" : "product-api-2",
+	"date": now() as String {format: "dd-MMM-yyyy"},
+	"description": "basics of git part 2"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="End Log" doc:id="bc1769d7-8eb1-4b61-a745-f412d963f789" message="End of flow"/>
+	</flow>
+</mule>
